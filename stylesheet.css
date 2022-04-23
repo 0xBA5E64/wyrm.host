@@ -144,6 +144,44 @@ body {
   align-items: center;
 }
 
+#sectionInformation .aboutBar .title {
+  display: flex;
+  align-items: center;
+}
+
+#sectionInformation .aboutBar .title:before {
+  position: relative;
+  display: inline-block;
+  content: "";
+  width:  .65em;
+  height: .65em;
+  border-right:   solid white 0.15em;
+  border-bottom: solid white 0.15em;
+  margin: 0em 0.8em;
+  /*background: linear-gradient(
+    45deg,
+    transparent   0%,
+    transparent  45%,
+    white      45%,
+    white      55%,
+    transparent  55%,
+    transparent 100%
+  );*/
+  transform: translateY(-25%) rotate(45deg);
+}
+
+#sectionInformation .aboutBar .disclaimer {
+  text-align: right;
+  width: 65%;
+}
+
+@media only screen and (orientation: portrait) {
+
+  #sectionInformation .aboutBar .disclaimer {
+    font-size: 0.75em;
+  }
+  
+}
 
 #sectionInformation .biography {
   position: relative;
