@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'Blex';
+  src: url("Blex_Mono_Nerd_Font_Complete_Mono.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Blex';
+  src: url("Blex_Mono_Italic_Nerd_Font_Complete_Mono.ttf");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Blex';
+  src: url("Blex Mono_Bold_Nerd_Font_Complete_Mono.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+

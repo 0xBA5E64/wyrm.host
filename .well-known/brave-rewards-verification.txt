@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: wyrm.host
+Token: f26c465b95f53ab642421ad8095976245e60c3fa2b93a7d33712cc2928d0bb38
