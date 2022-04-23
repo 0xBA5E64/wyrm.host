@@ -47,19 +47,21 @@ body {
 
 #logoBox {
   position: relative;
-  display: inline-grid;
+  display: inline-flex;
+  flex-direction: column;
 }
 
 #centerBox .row {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  flex-direction: row;
 }
 
 #logoBox .pixel {
   position: relative;
+  display: inline-block;
   height: 16px;
   width: 16px;
-  float: left;
   cursor: default;
   overflow: hidden;
 }
@@ -79,6 +81,19 @@ body {
   font-weight: bold;
   transform: translate(-50%,-50%) rotate(45deg);
   opacity: 1;
+}
+
+@media only screen and (orientation: portrait) {
+
+  #logoBox .pixel {
+    width: 2vw;
+    height: 2vw;
+  }
+
+  #logoBox .pixel span {
+    font-size: 2vw;
+  }
+  
 }
 
 #linkBox {

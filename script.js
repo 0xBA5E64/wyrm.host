@@ -45,7 +45,6 @@ function init() {
       pixelRowElement.appendChild(pixelElement)
     }
   }
-  document.getElementById("logoBox").style.width = (canvasSize.x * 16) + "px";
 }
 
 init()
