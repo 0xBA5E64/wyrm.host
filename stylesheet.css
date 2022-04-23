@@ -158,9 +158,33 @@ body {
 }
 
 #sectionInformation a {
+  display: inline-block;
+  position: relative;
   color: #2DF;
+  font-style: italic;
+  text-decoration: none;
+  transition: 200ms;
 }
 
+#sectionInformation a::before {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 2px;
+  background: #2DF;
+  z-index: -1;
+  border-radius: 2px;
+  opacity: 1;
+  transition: 200ms;
+}
+
+#sectionInformation a:hover::before {
+  height: 100%;
+  opacity: 0.25;
+}
 
 
 
