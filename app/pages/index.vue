@@ -1,37 +1,42 @@
 <template>
-    <div class="section" id="sectionGreeter">
-        <div id="centerBox">
+
+    <section id="greeter">
+
+        <div class="center-container">
             <HeroGraphic />
             <SocialLinks />
         </div>
 
         <!-- <CryptoAddresses /> -->
-    </div>
+    </section>
 
-    <div class="section" id="sectionInformation">
+    <section id="information">
+
         <div class="aboutBar">
-            <span class="title"
-                >Bio<span style="opacity: 0.5">graphy</span></span
+            <p class="title"
+                >Bio<span style="opacity: 0.5">graphy</span></p
             >
-            <span class="disclaimer"
+            <p class="disclaimer"
                 >Based off of Midnight Scrivener's
                 <a
                     href="https://midnight-scrivener.tumblr.com/post/169992996839/what-if-people-we-consider-collectors-today-were"
                     >flash fiction</a
-                ></span
+                ></p
             >
         </div>
 
         <BiographyDialogue />
-    </div>
-</template>
+
+    </section>
+
+    </template>
 
 <script>
 // document.getElementById("linkBox").children[2].addEventListener("mouseenter", function(){renderImage(imageDrgnLogo)})
 </script>
 
 <style>
-.section {
+section {
     position: relative;
     top: 0;
     width: 100%;
@@ -41,11 +46,11 @@
 
 /* TOP SECTION: "GREETER" */
 
-.section#sectionGreeter {
+section#greeter {
     height: 100%;
 }
 
-#centerBox {
+.center-container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -55,12 +60,12 @@
 
 /* SECTION: "INFORMATION" */
 
-#sectionInformation {
+section#nformation {
     position: relative;
     /* Potential section-specific adjustments here ;) */
 }
 
-#sectionInformation .aboutBar {
+section#information .aboutBar {
     position: absolute;
     top: -90px;
     left: 50%;
@@ -74,12 +79,12 @@
     align-items: center;
 }
 
-#sectionInformation .aboutBar .title {
+section#information .aboutBar .title {
     display: flex;
     align-items: center;
 }
 
-#sectionInformation .aboutBar .title:before {
+section#information .aboutBar .title:before {
     position: relative;
     display: inline-block;
     content: "";
@@ -100,18 +105,18 @@
     transform: translateY(-25%) rotate(45deg);
 }
 
-#sectionInformation .aboutBar .disclaimer {
+section#information .aboutBar .disclaimer {
     text-align: right;
     width: 65%;
 }
 
 @media only screen and (orientation: portrait) {
-    #sectionInformation .aboutBar .disclaimer {
+    section#information .aboutBar .disclaimer {
         font-size: 0.75em;
     }
 }
 
-#sectionInformation .biography {
+section#information .biography {
     position: relative;
     top: 0;
     left: 50%;
@@ -119,7 +124,7 @@
     max-width: 80%;
 }
 
-#sectionInformation a {
+section#information a {
     display: inline-block;
     position: relative;
     color: #2df;
@@ -128,7 +133,7 @@
     transition: 200ms;
 }
 
-#sectionInformation a::before {
+section#information a::before {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -143,7 +148,7 @@
     transition: 200ms;
 }
 
-#sectionInformation a:hover::before {
+section#information a:hover::before {
     height: 100%;
     opacity: 0.25;
 }
