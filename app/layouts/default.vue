@@ -8,7 +8,7 @@
 body {
     background: #001;
     color: white;
-    font-family: "Blex", "Courier New", Courier, monospace;
+    font-family: "IBM Plex Mono", monospace;
     margin: 0;
 }
 
