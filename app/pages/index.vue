@@ -1,33 +1,28 @@
 <template>
-    <div id="main">
-
-        <div class="section" id="sectionGreeter">
-
-            <div id="centerBox">
-                <HeroGraphic />
-                <SocialLinks />
-            </div>
-
-            <!-- <CryptoAddresses /> -->
-
+    <div class="section" id="sectionGreeter">
+        <div id="centerBox">
+            <HeroGraphic />
+            <SocialLinks />
         </div>
 
-        <div class="section" id="sectionInformation">
-            <div class="aboutBar">
-                <span class="title"
-                    >Bio<span style="opacity: 0.5">graphy</span></span
-                >
-                <span class="disclaimer"
-                    >Based off of Midnight Scrivener's
-                    <a
-                        href="https://midnight-scrivener.tumblr.com/post/169992996839/what-if-people-we-consider-collectors-today-were"
-                        >flash fiction</a
-                    ></span
-                >
-            </div>
+        <!-- <CryptoAddresses /> -->
+    </div>
 
-            <BiographyDialogue />
+    <div class="section" id="sectionInformation">
+        <div class="aboutBar">
+            <span class="title"
+                >Bio<span style="opacity: 0.5">graphy</span></span
+            >
+            <span class="disclaimer"
+                >Based off of Midnight Scrivener's
+                <a
+                    href="https://midnight-scrivener.tumblr.com/post/169992996839/what-if-people-we-consider-collectors-today-were"
+                    >flash fiction</a
+                ></span
+            >
         </div>
+
+        <BiographyDialogue />
     </div>
 </template>
 
@@ -36,23 +31,6 @@
 </script>
 
 <style>
-body {
-    background: #001;
-    color: white;
-    font-family: "Blex", "Courier New", Courier, monospace;
-    margin: 0;
-}
-
-#main {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-}
-
 .section {
     position: relative;
     top: 0;
@@ -61,10 +39,7 @@ body {
     margin: 0;
 }
 
-/*
- // TOP SECTION:
- // "GREETER"
- */
+/* TOP SECTION: "GREETER" */
 
 .section#sectionGreeter {
     height: 100%;
@@ -172,5 +147,4 @@ body {
     height: 100%;
     opacity: 0.25;
 }
-
 </style>
