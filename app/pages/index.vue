@@ -1,38 +1,14 @@
 <template>
     <div id="main">
+
         <div class="section" id="sectionGreeter">
+
             <div id="centerBox">
                 <div id="logoBox"></div>
-                <div id="link-box">
-                    <a href="https://twitter.com/0xBA5E64"
-                        ><i class="fab fa-twitter fa-2x"></i
-                    ></a>
-                    <a rel="me" href="https://chaos.social/@TheHoardingWyrmling"
-                        ><i class="fab fa-mastodon fa-2x"></i
-                    ></a>
-                    <!-- TODO: Implement multple mastodon instances properly; -->
-                    <!-- <a rel="me" href="https://dragon.style/@wyrm">Mastodon</a> -->
-                    <a href="https://dragon.singles/"
-                        ><i class="fas fa-dragon fa-2x"></i
-                    ></a>
-                    <a href="https://file.wyrm.host/"
-                        ><i class="fas fa-folder fa-2x"></i
-                    ></a>
-                </div>
+                <SocialLinks />
             </div>
 
-            <!-- Crypto was here -->
-
-            <!--
-    <div id="crypto">
-      <h1>Crypto</h1>
-      <p class="BTC">bc1quf7vtr4sqzjfghny3lqzlmm4cn8aq9zzk3vg3t</p>
-      <p class="BCH">qp9y97glf4frj8nsr4xzcrgfm9cq3vg6zc796xar4s</p>
-      <p class="ETH">0xb081f5474005Cc375A61d89f74f99DC764D5FFE6</p>
-      <p class="ETC">0xFba7aa0175450e8b18aAd3937e8f829d06769dE2</p>
-      <p class="LTC">LgYjygRvNhmqu8CtcUnhF11fezkPFKZ6xu</p>
-    </div>
-    -->
+            <!-- <CryptoAddresses /> -->
         </div>
 
         <div class="section" id="sectionInformation">
@@ -49,71 +25,7 @@
                 >
             </div>
 
-            <div class="biography">
-                <p class="wyrm">
-                    I am the dragon that calls themselves <b>Dovah</b>, and
-                    <a href="https://file.wyrm.host/">this</a>, is my hoard.
-                </p>
-                <p class="othr">You... don't look really look like a dragon?</p>
-                <p class="wyrm">
-                    Well, hardly anyone does these days. As times have changed
-                    so have we. The scales and wings worked along the dinosaurs.
-                    But we quickly learned that wasn't going to fly with you
-                    people. Though I do admittedly miss our kin's tails.
-                </p>
-                <p class="othr">
-                    You were around all the way back to the dinosaurs?
-                </p>
-                <p class="wyrm">
-                    Well, not <i>me</i>, personally. How old do you think I am?
-                </p>
-                <p class="othr">
-                    ...There is no safe answer to that, is there?
-                </p>
-                <p class="wyrm">No.</p>
-                <p class="othr">So... when you say this is your hoard...?</p>
-                <p class="wyrm">
-                    All dragons have one. Some stick to the old gold and jewels
-                    thing, but that is somewhat cliché these days. Most of us
-                    nowadays like our hoards to be a little bit more
-                    sophisticated than 'shiny.'
-                </p>
-                <p class="othr">Like what?</p>
-                <p class="wyrm">
-                    I have known dragons whom collect snowflakes from the first
-                    fall of the year over dozens of centuries. Dragons that
-                    collect the petals of flowers left on the graves of loved
-                    ones. Dragons that keep and care for soft toys and comfort
-                    items, left behind by children as they've grown up. Dragons
-                    that guard happy memories and shards of sunlight, kept safe
-                    for rainy days.
-                </p>
-                <p class="wyrm">
-                    I myself have found my calling in by nature of the digital
-                    age; 1s & 0s. These two primitives let me freely build my
-                    hoard out of most anything, at unprecidented density. Music,
-                    art, film and writings, and not just the famed works of
-                    noted names, but just so those of lesser praise. I catch all
-                    that which catches my eye in the digital stream, and I do my
-                    best to uphold my sanctuary of information.
-                </p>
-                <p class="othr">
-                    Forgive me but, that seems unsafe to slumber on
-                </p>
-                <p class="wyrm">
-                    Military-grade casing is a small price to pay for a safe
-                    <i>and</i> self-heating hoard in winter.
-                </p>
-                <p class="othr">
-                    Wow. So all these things... really mean a lot to you, huh?
-                </p>
-                <p class="wyrm">
-                    They are my memories. All the things that have helped shape
-                    me into the being who stands here talking to you now. Every
-                    last one of them, in some way, is a fragment of my very
-                    self.
-                </p>
-            </div>
+            <BiographyDialogue />
         </div>
     </div>
 </template>
@@ -314,26 +226,6 @@ body {
     }
 }
 
-#linkBox {
-    display: flex;
-    padding: 16px;
-
-    justify-content: space-around;
-    align-items: center;
-}
-
-#linkBox > * {
-    color: #ffffff;
-    padding: 16px;
-    opacity: 0.25;
-    transition: all 200ms;
-}
-
-#linkBox > *:hover {
-    color: #ffffff;
-    opacity: 0.9;
-}
-
 /*
   // SECTION:
   // "INFORMATION"
@@ -403,25 +295,6 @@ body {
     max-width: 80%;
 }
 
-.biography {
-    width: 800px;
-    padding: 20px;
-    font-size: 14px;
-}
-
-.biography p {
-    display: block;
-}
-
-.biography p.wyrm {
-    opacity: 0.8;
-}
-
-.biography p.othr {
-    font-style: italic;
-    opacity: 0.4;
-}
-
 #sectionInformation a {
     display: inline-block;
     position: relative;
@@ -451,59 +324,4 @@ body {
     opacity: 0.25;
 }
 
-#crypto {
-    display: inline-block;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-#crypto h1 {
-    color: #aaa;
-    font-family: "Blex", "IBM Plex Mono", "Courier New", Courier, monospace;
-}
-
-#crypto h1::before {
-    content: "#";
-    opacity: 0.25;
-    margin-right: 4px;
-}
-
-#crypto p {
-    margin: 8px 0;
-    font-size: 12px;
-    padding: 2px 8px;
-    color: #aaa;
-    font-family: "Blex", "IBM Plex Mono", "Courier New", Courier, monospace;
-    border-radius: 4px;
-    border: solid 1px #444;
-}
-
-#crypto p:before {
-    font-weight: bold;
-    border-right: solid 1px #aaa;
-    padding-right: 8px;
-    margin-right: 8px;
-}
-
-#crypto p.BTC:before {
-    content: "BTC";
-}
-#crypto p.BCH:before {
-    content: "BCH";
-}
-#crypto p.ETH:before {
-    content: "ETH";
-}
-#crypto p.ETC:before {
-    content: "ETC";
-}
-#crypto p.LTC:before {
-    content: "LTC";
-}
-#crypto p.LTC:after {
-    content: "########";
-    color: #444;
-    filter: blur(1px);
-}
 </style>
