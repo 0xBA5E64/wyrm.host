@@ -1,123 +1,84 @@
-<template>
-    <div id="logoBox" class="logo-box"></div>
-</template>
+<script setup lang="ts">
+const {
+    graphic,
+    speed = 10,
+    width = 40,
+    height = 10,
+} = defineProps({
+    graphic: [[Number]],
+    speed: Number,
+    width: Number,
+    height: Number,
+});
 
-<script>
+const canvas = useTemplateRef("canvas");
+let graphic_cursor = { x: 0, y: 0 };
 
+const graphicRender = () => {
+    // If we're on the line after the last we're done and return early
+    if (graphic_cursor.y == graphic.length) return;
 
-export default {
-    mounted() {
-        let canvas = document.getElementById("logoBox");
-        let canvasSize = { x: 40, y: 10 };
-
-        let imageWyrmLogo = [
-          [0,0,0,1,0,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,0],
-          [0,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,0,0,0],
-          [0,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,1,1,0,1,1,0,0,0],
-          [0,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,1,1,0,1,1,0,0,0],
-          [0,0,0,1,1,0,1,1,0,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,0,1,1,0,1,1,0,0,0],
-          [0,0,0,1,1,0,1,1,0,1,1,0,0,0,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,1,1,0,1,1,0,1,1,0,0,0],
-          [0,0,0,1,1,0,1,1,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,1,1,1,0,0,1,1,0,0,0,0,1,1,0,0,0],
-          [0,0,0,1,1,0,1,1,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,0],
-          [0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,1,1,0,0,0],
-          [0,0,0,0,1,1,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,1,1,0,0,1,0,0,0,0,0,0,1,0,0,0]
-        ]
-
-        let imageDrgnLogo = [
-          [0,0,0,0,1,1,1,1,1,0,0,0,1,1,1,1,1,0,0,0,0,1,1,1,1,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0],
-          [0,0,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,0,0,0,1,1,0,0,0,0],
-          [0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,0,0,1,1,1,1,0,0,1,1,0,0,0,0],
-          [0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,0,0,0,0,1,1,1,1,1,0,1,1,0,0,0,0],
-          [0,0,0,0,1,1,0,0,1,1,0,0,1,1,1,1,1,1,0,0,1,1,0,1,1,0,0,0,1,1,0,1,1,0,1,1,0,0,0,0],
-          [0,0,0,0,1,1,0,0,1,1,0,0,1,1,1,1,1,0,0,0,1,1,0,1,1,1,0,0,1,1,0,1,1,0,1,1,0,0,0,0],
-          [0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,1,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,1,1,1,1,1,0,0,0,0],
-          [0,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,0,0,1,1,1,1,0,0,0,0],
-          [0,0,0,0,1,1,1,1,1,1,0,0,1,1,0,0,1,1,0,0,1,1,1,1,1,1,0,0,1,1,0,0,0,1,1,1,0,0,0,0],
-          [0,0,0,0,1,1,1,1,1,0,0,0,1,1,0,0,1,1,0,0,0,1,1,1,1,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0]
-        ]
-
-        function init() {
-            for (let i = 0; i < canvasSize.y; i++) {
-                let pixelRowElement = document.createElement("div");
-                pixelRowElement.classList.add("row");
-                canvas.appendChild(pixelRowElement);
-
-                for (let i2 = 0; i2 < canvasSize.x; i2++) {
-                    let pixelElement = document.createElement("div");
-                    pixelElement.classList.add("pixel");
-                    pixelElement.appendChild(document.createElement("span"));
-                    pixelElement.children[0].innerText = "+";
-                    pixelRowElement.appendChild(pixelElement);
+    // If speed is 0 we skip the animation and just iterate through the whole ordeal in one swoop
+    if (speed == 0) {
+        // Row Iterator
+        for (let y = 0; y < graphic.length; y++) {
+            // Pixel Iterator
+            for (let x = 0; x < graphic[y]!.length; x++) {
+                const pixel =
+                    canvas.value!.querySelectorAll(".row")![y]!.children[x]!;
+                if (graphic[y]![x]!) {
+                    pixel.classList.add("active");
+                } else {
+                    pixel.classList.remove("active");
                 }
             }
         }
+        return;
+    }
 
-        init();
+    // Check if the pixel is meant to be active and set it as such if so
+    if (graphic[graphic_cursor.y]![graphic_cursor.x]!) {
+        canvas
+            .value!.querySelectorAll(".row")!
+            [graphic_cursor.y]!.children[graphic_cursor.x]!.classList.add(
+                "active",
+            );
+    }
 
-        function renderImage(image) {
-            for (let i = 0; i < image.length; i++) {
-                for (let i2 = 0; i2 < image[i].length; i2++) {
-                    if (image[i][i2]) {
-                        canvas
-                            .getElementsByClassName("row")
-                            [i].children[i2].classList.add("active");
-                    } else {
-                        canvas
-                            .getElementsByClassName("row")
-                            [i].children[i2].classList.remove("active");
-                    }
-                }
-            }
-        }
+    graphic_cursor.x++;
 
-        let renderImageMem = { x: 0, y: 0 };
+    if (graphic_cursor.x >= graphic[0]!.length) {
+        graphic_cursor.x = 0;
+        graphic_cursor.y++;
+    }
 
-        function renderImageSlow(image) {
-            //console.log("Now serving pixel X: " + renderImageMem.x + " Y: " + renderImageMem.y)
-
-            if (renderImageMem.y == image.length) {
-                return true;
-            }
-
-            if (image[renderImageMem.y][renderImageMem.x]) {
-                canvas
-                    .getElementsByClassName("row")
-                    [renderImageMem.y].children[renderImageMem.x].classList.add(
-                        "active",
-                    );
-            }
-
-            renderImageMem.x++;
-
-            if (renderImageMem.x >= image[0].length) {
-                renderImageMem.x = 0;
-                renderImageMem.y++;
-            }
-
-            setTimeout(function () {
-                renderImageSlow(image);
-            }, 10);
-        }
-
-        renderImageSlow(imageWyrmLogo);
-
-    },
+    setTimeout(function () {
+        graphicRender();
+    }, speed);
 };
 
+onMounted(() => {
+    graphicRender();
+});
 </script>
 
-<style>
-/* css can't be scoped yet cause the generated row and pixel entries don't get the neccecary v-data tags to be scoped */
+<template>
+    <div class="logo-box" ref="canvas">
+        <div class="row" v-for="_y in height">
+            <div class="pixel" v-for="_x in width"><span>+</span></div>
+        </div>
+    </div>
+</template>
 
+<style scoped>
 .logo-box {
     position: relative;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
 }
 
 .logo-box .row {
-    position: relative;
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
 }
 
@@ -126,8 +87,8 @@ export default {
     display: inline-block;
     height: 16px;
     width: 16px;
+    font-size: 16px;
     cursor: default;
-    overflow: hidden;
 }
 
 .logo-box .pixel span,
@@ -159,5 +120,4 @@ export default {
         font-size: 2vw;
     }
 }
-
 </style>
