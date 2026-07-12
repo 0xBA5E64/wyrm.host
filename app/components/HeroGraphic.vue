@@ -115,6 +115,12 @@ export default {
     flex-direction: column;
 }
 
+.logo-box .row {
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+}
+
 .logo-box .pixel {
     position: relative;
     display: inline-block;

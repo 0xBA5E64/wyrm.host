@@ -78,17 +78,7 @@ body {
     display: inline-grid;
 }
 
-
-#centerBox .row {
-    position: relative;
-    display: inline-flex;
-    flex-direction: row;
-}
-
-/*
-  // SECTION:
-  // "INFORMATION"
-  */
+/* SECTION: "INFORMATION" */
 
 #sectionInformation {
     position: relative;
