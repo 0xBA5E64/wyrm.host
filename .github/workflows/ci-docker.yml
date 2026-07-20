@@ -57,7 +57,7 @@ jobs:
       - name: Activate ssh private key
         uses: webfactory/ssh-agent@v0.9.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
 
       - name: Push image to server
         run: cat ${{ vars.IMAGE_NAME }}.tar | ssh -o "StrictHostKeyChecking=no" ${{ vars.REMOTE_SERVER }} docker image load
