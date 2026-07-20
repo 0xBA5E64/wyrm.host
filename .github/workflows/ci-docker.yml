@@ -10,16 +10,38 @@ jobs:
 
   build-container:
     name: Build container image
-    uses: docker/github-builder/.github/workflows/build.yml@v1
-    permissions:
-      contents: read # to fetch the repository content
-    with:
-      output: local
-      sign: false
-      cache: true
-      meta-images: ${{ vars.IMAGE_NAME }}
-      artifact-name: ${{ vars.IMAGE_NAME }}
-      artifact-upload: true
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Set up Docker Buildx
+        id: docker-setup
+        uses: docker/setup-buildx-action@v4
+
+      - name: Generate Docker Metadata
+        id: docker-meta
+        uses: docker/metadata-action@v6
+        with:
+          images: ${{ vars.IMAGE_NAME }}
+          tags: |
+            type=sha,format=long
+            type=ref,event=branch
+            type=ref,event=tag
+            type=ref,event=pr
+
+      - name: Build & Push docker image
+        id: docker-build
+        uses: docker/build-push-action@v7
+        with:
+          tags: ${{ steps.docker-meta.outputs.tags }}
+          labels: ${{ steps.docker-meta.outputs.labels }}
+
+      - name: Export docker image to tar archive
+        run: docker image save ${{ vars.IMAGE_NAME }} -o ${{ vars.IMAGE_NAME }}.tar
+
+      - name: Upload docker image as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: ${{ vars.IMAGE_NAME }}.tar
 
   push-image:
     name: Push image to server
@@ -27,6 +49,7 @@ jobs:
     needs: build-container
     environment: wyrm.host
     steps:
+
       - name: Pull image artifact
         uses: actions/download-artifact@v5
         with:
