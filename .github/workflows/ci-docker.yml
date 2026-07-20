@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - nuxt-refactor
   workflow_dispatch:
 
 env:
