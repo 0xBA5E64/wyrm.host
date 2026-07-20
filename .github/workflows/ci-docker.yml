@@ -34,6 +34,7 @@ jobs:
         with:
           tags: ${{ steps.docker-meta.outputs.tags }}
           labels: ${{ steps.docker-meta.outputs.labels }}
+          load: true
 
       - name: Export docker image to tar archive
         run: docker image save ${{ vars.IMAGE_NAME }} -o ${{ vars.IMAGE_NAME }}.tar
