@@ -52,6 +52,7 @@ jobs:
     steps:
 
       - name: Pull image artifact
+        id: pull-image
         uses: actions/download-artifact@v8
 
       - name: Activate ssh private key
@@ -63,4 +64,4 @@ jobs:
         run: ls -lah .
 
       - name: Push image to server
-        run: cat ./${{ vars.IMAGE_NAME }}.tar | ssh -o "StrictHostKeyChecking=no" ${{ vars.DEPLOY_SERVER }} docker image load
+        run: cat ${{steps.pull-image.outputs.download-path}}/${{ vars.IMAGE_NAME }}.tar | ssh -o "StrictHostKeyChecking=no" ${{ vars.DEPLOY_SERVER }} docker image load
