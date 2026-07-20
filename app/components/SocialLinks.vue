@@ -18,10 +18,12 @@
 </template>
 
 <style scoped>
-
 #link-box {
     display: flex;
     padding: 16px;
+
+    width: 30%;
+    min-width: 400px;
 
     justify-content: space-around;
     align-items: center;
@@ -38,5 +40,4 @@
     color: #ffffff;
     opacity: 0.9;
 }
-
 </style>

@@ -29,10 +29,8 @@ let drgn_graphic_matrix: number[][] = [
 
 <template>
     <section id="greeter">
-        <div class="center-container">
-            <HeroGraphic :graphic="wyrm_graphic_matrix" />
-            <SocialLinks />
-        </div>
+        <HeroGraphic :graphic="wyrm_graphic_matrix" />
+        <SocialLinks />
     </section>
 
     <section id="information">
@@ -65,15 +63,11 @@ section {
 }
 
 section#greeter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     height: 100%;
-}
-
-.center-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(0deg);
-    display: inline-grid;
 }
 
 section .section-label {
