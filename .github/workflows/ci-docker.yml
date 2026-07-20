@@ -15,6 +15,7 @@ jobs:
       contents: read # to fetch the repository content
     with:
       output: local
+      sign: false
       cache: true
       meta-images: ${{ vars.IMAGE_NAME }}
       artifact-name: ${{ vars.IMAGE_NAME }}
