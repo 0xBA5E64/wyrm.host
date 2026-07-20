@@ -39,10 +39,13 @@ jobs:
       - name: Export docker image to tar archive
         run: docker image save ${{ vars.IMAGE_NAME }} -o ${{ vars.IMAGE_NAME }}.tar
 
+      - name: Compress docker image
+        run:  xz -9 ${{ vars.IMAGE_NAME }}.tar
+
       - name: Upload docker image as artifact
         uses: actions/upload-artifact@v7
         with:
-          path: ${{ vars.IMAGE_NAME }}.tar
+          path: ${{ vars.IMAGE_NAME }}.tar.xz
           archive: false
 
   push-image:
@@ -56,7 +59,7 @@ jobs:
         id: pull-image
         uses: actions/download-artifact@v8
         with:
-          name: ${{ vars.IMAGE_NAME }}.tar
+          name: ${{ vars.IMAGE_NAME }}.tar.xz
 
       - name: Activate ssh private key
         uses: webfactory/ssh-agent@v0.9.0
@@ -67,4 +70,4 @@ jobs:
         run: ls -lah .
 
       - name: Push image to server
-        run: cat ${{ vars.IMAGE_NAME }}.tar | ssh -o "StrictHostKeyChecking=no" ${{ vars.DEPLOY_SERVER }} docker image load
+        run: cat ${{ vars.IMAGE_NAME }}.tar.xz | ssh -o "StrictHostKeyChecking=no" ${{ vars.DEPLOY_SERVER }} "xz -d | docker image load"
