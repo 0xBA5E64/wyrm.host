@@ -59,5 +59,8 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
 
+      - name: List files
+        run: ls -lah .
+
       - name: Push image to server
-        run: cat ${{ vars.IMAGE_NAME }}.tar | ssh -o "StrictHostKeyChecking=no" ${{ vars.REMOTE_SERVER }} docker image load
+        run: cat ./${{ vars.IMAGE_NAME }}.tar | ssh -o "StrictHostKeyChecking=no" ${{ vars.DEPLOY_SERVER }} docker image load
