@@ -40,7 +40,7 @@ jobs:
         run: docker image save ${{ vars.IMAGE_NAME }} -o ${{ vars.IMAGE_NAME }}.tar
 
       - name: Compress docker image
-        run:  xz -9 ${{ vars.IMAGE_NAME }}.tar
+        run:  xz -z6 ${{ vars.IMAGE_NAME }}.tar
 
       - name: Upload docker image as artifact
         uses: actions/upload-artifact@v7
