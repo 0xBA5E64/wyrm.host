@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - main
-      - nuxt-refactor
+      - nuxt-refactor-docker-ci
   workflow_dispatch:
 
 jobs:
@@ -52,7 +52,9 @@ jobs:
     name: Push image to server
     runs-on: ubuntu-slim
     needs: build-container
-    environment: wyrm.host
+    environment:
+      name: wyrm.host
+      url: https://wyrm.host/
     steps:
 
       - name: Pull image artifact
